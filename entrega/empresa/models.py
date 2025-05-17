@@ -14,7 +14,7 @@ class Encargado(models.Model):
 class Empleado(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    area = models.CharField(max_length=50)
+    area = models.CharField(max_length=60)
 
     def __str__(self):
         return f"Bienvenido {self.nombre} {self.apellido} - {self.area}"
