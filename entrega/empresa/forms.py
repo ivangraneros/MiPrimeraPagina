@@ -1,23 +1,20 @@
 from django import forms
 from .models import Encargado, Empleado, Cliente
 
-class EncargadoForm(forms.Form):
+class EncargadoForm(forms.ModelForm):
+    class Meta:
+        model = Encargado
+        fields = ['nombre', 'apellido', 'email']
 
-    nombre = forms.CharField(max_length=50)
-    apellido = forms.CharField(max_length=50)
-    email = forms.EmailField()
+class EmpleadoForm(forms.ModelForm):
+    class Meta:
+        model = Empleado
+        fields = ['nombre', 'apellido', 'area']
 
-class EmpleadoForm(forms.Form):
-
-    nombre = forms.CharField(max_length=50)
-    apellido = forms.CharField(max_length=50)
-    area = forms.CharField(max_length=50)
-
-class ClienteForm(forms.Form):
-
-    nombre = forms.CharField(max_length=50)
-    apellido = forms.CharField(max_length=50)
-    telefono = forms.IntegerField()
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+        fields = ['nombre', 'apellido', 'telefono']
 
 class BuscarClienteForm(forms.Form):
     nombre = forms.CharField(label='Buscar Cliente por nombre')

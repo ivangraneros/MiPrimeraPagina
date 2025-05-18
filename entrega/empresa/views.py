@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Encargado, Empleado, Cliente
 from .forms import EncargadoForm, EmpleadoForm, ClienteForm, BuscarClienteForm
 
@@ -14,7 +14,7 @@ def crear_encargado(request):
         form = EncargadoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('crear_encargado')
+            return redirect('nuevo_encargado')
     else:
         form = EncargadoForm()
     return render(request, 'empresa/form_encargado.html', {'form': form})
@@ -24,7 +24,7 @@ def crear_empleado(request):
         form = EmpleadoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('crear_empleado')
+            return redirect('nuevo_empleado')
     else:
         form = EmpleadoForm()
     return render(request, 'empresa/form_empleado.html', {'form': form})
@@ -34,18 +34,18 @@ def crear_cliente(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('crear_cliente')
+            return redirect('nuevo_cliente')
     else:
         form = ClienteForm()
     return render(request, 'empresa/form_cliente.html', {'form': form})
 
 def buscar_cliente(request):
-    resultados = None
+    clientes = None
     if request.method == 'POST':
         form = BuscarClienteForm(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data['nombre']
-            resultados = Cliente.objects.filter(nombre__icontains=nombre)
+            clientes = Cliente.objects.filter(nombre__icontains=nombre)
     else:
         form = BuscarClienteForm()
-    return render(request, 'empresa/buscar_cliente.html', {'form': form, 'resultados': resultados})
+    return render(request, 'empresa/buscar_cliente.html', {'form': form, 'clientes': clientes})
