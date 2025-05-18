@@ -6,7 +6,7 @@ from .forms import EncargadoForm, EmpleadoForm, ClienteForm, BuscarClienteForm
 
 def index(request):
 
-    return render( request , "empresa/index.html" )
+    return render( request , "empresa/inicio.html" )
 
 
 def crear_encargado(request):
@@ -17,7 +17,7 @@ def crear_encargado(request):
             return redirect('crear_encargado')
     else:
         form = EncargadoForm()
-    return render(request, 'miapp/crear_encargado.html', {'form': form})
+    return render(request, 'empresa/form_encargado.html', {'form': form})
 
 def crear_empleado(request):
     if request.method == 'POST':
@@ -27,7 +27,7 @@ def crear_empleado(request):
             return redirect('crear_empleado')
     else:
         form = EmpleadoForm()
-    return render(request, 'miapp/crear_empleado.html', {'form': form})
+    return render(request, 'empresa/form_empleado.html', {'form': form})
 
 def crear_cliente(request):
     if request.method == 'POST':
@@ -37,7 +37,7 @@ def crear_cliente(request):
             return redirect('crear_cliente')
     else:
         form = ClienteForm()
-    return render(request, 'miapp/crear_cliente.html', {'form': form})
+    return render(request, 'empresa/form_cliente.html', {'form': form})
 
 def buscar_cliente(request):
     resultados = None
@@ -48,4 +48,4 @@ def buscar_cliente(request):
             resultados = Cliente.objects.filter(nombre__icontains=nombre)
     else:
         form = BuscarClienteForm()
-    return render(request, 'miapp/buscar_cliente.html', {'form': form, 'resultados': resultados})
+    return render(request, 'empresa/buscar_cliente.html', {'form': form, 'resultados': resultados})
