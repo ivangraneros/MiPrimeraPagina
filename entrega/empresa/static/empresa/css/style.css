@@ -12,3 +12,17 @@ header nav a {
 header nav a:hover {
     text-decoration: underline;
 }
+
+/* HERO background */
+.hero {
+  background: linear-gradient(to right, #00000080, #4a444480),
+                url('https://source.unsplash.com/1600x900/?business,technology') center center / cover no-repeat;
+              
+  height: 400px;
+  margin-top: 20px;
+}
+
+/* Navbar link hover */
+.navbar-nav .nav-link:hover {
+  color: #ffc107 !important;
+}
